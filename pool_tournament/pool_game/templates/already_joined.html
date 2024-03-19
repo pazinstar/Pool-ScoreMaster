@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Already Joined{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="alert alert-warning" role="alert">
+        You are already in the tournament "{{ tournament.name }}".
+    </div>
+</div>
+{% endblock %}

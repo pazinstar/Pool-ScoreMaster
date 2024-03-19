@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}{{ tournament.name }}{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title"><i class="bi bi-trophy"></i> {{ tournament.name }}</h2>
+                    <p class="card-text"><i class="bi bi-person"></i> <strong>Organizer:</strong> {{ tournament.organizer }}</p>
+                    <p class="card-text"><i class="bi bi-calendar3"></i> <strong>Start Date:</strong> {{ tournament.start_date }}</p>
+                    <p class="card-text"><i class="bi bi-calendar3"></i> <strong>End Date:</strong> {{ tournament.end_date }}</p>
+                    <p class="card-text"><i class="bi bi-geo-alt"></i> <strong>Venue:</strong> {{ tournament.venue }}</p>
+                    <p class="card-text"><i class="bi bi-award"></i> <strong>Type:</strong> {{ tournament.tournament_type }}</p>
+                    <h3 class="mt-4"><i class="bi bi-people"></i> Players:</h3>
+                    <ul class="list-group">
+                        {% for player in tournament.players.all %}
+                        <li class="list-group-item"><i class="bi bi-person"></i> {{ player.user.username }}</li>
+                        {% empty %}
+                        <li class="list-group-item">No players registered yet.</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{% url 'join_tournament' tournament.id %}" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Join Tournament</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
